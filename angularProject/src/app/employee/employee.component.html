@@ -1,0 +1,39 @@
+<button (click) = "getEmployeeDetails()">
+  Get Employee Details
+</button>
+{{errorMsg}}
+<br>
+<div *ngIf = "employees.length != 0">
+  <br>
+    <div>
+     <b> Message From App Parent is: </b> {{messageFromAppParent}}
+    </div>
+    <br>
+<app-employee-count [all] = "getTotalEmployeesCount()" [females] = "getFemaleEmployeesCount()" 
+[males] = "getMaleEmployeesCount()" (countRadioButtonSelectionChanged) = "onEmployeeCountRadioButtonChange($event)"></app-employee-count>
+{{dataFromEmployeeCount}}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Id</th>
+      <th>Designation</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let employee of employees">
+    <tr *ngIf="dataFromEmployeeCount == 'All' || dataFromEmployeeCount == employee.gender">
+      <th>{{employee.name | uppercase | employeeTitle: employee.gender}}</th>
+      <th> {{employee.id}}</th>
+      <th> {{employee.designation}}</th>
+      <th> {{employee.gender}}</th>
+    </tr></ng-container>
+  </tbody>
+</table>
+<br>
+
+<button (click) = "childEventEmitter()">Send Message To App Parent</button>
+
+</div>
+<br>

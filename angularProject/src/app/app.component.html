@@ -1,0 +1,4 @@
+<app-employee [messageFromAppParent] = "messageToEmployeeChild" (childMessageEmitter) = "messageFromEmployeeChild=$event" ></app-employee>
+<div *ngIf="messageFromEmployeeChild.length != 0">
+<b>Message From Employee Child is:</b> {{messageFromEmployeeChild}}
+</div>
